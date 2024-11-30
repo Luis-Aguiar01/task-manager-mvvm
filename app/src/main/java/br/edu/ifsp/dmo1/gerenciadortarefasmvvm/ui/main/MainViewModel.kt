@@ -15,8 +15,18 @@ class MainViewModel : ViewModel() {
             return _tasks
         }
 
+    private val _insertTask = MutableLiveData<Boolean>()
+    val insertTask: LiveData<Boolean> = _insertTask
+
     init {
         mock()
+        load()
+    }
+
+    fun insertTask(description: String) {
+        val task = Task(description, false)
+        dao.add(task)
+        _insertTask.value = true
         load()
     }
 
