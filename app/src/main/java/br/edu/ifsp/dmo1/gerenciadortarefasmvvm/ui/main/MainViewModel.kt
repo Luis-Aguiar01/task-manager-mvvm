@@ -22,11 +22,6 @@ class MainViewModel : ViewModel() {
     val updateTask: LiveData<Boolean>
         get() = _updateTask
 
-    init {
-        mock()
-        load()
-    }
-
     fun insertTask(description: String) {
         val task = Task(description, false)
         dao.add(task)
@@ -39,12 +34,6 @@ class MainViewModel : ViewModel() {
         task.isCompleted = !task.isCompleted
         _updateTask.value = true
         load()
-    }
-
-    private fun mock() {
-        dao.add(Task("Arrumar a Cama", false))
-        dao.add(Task("Retirar o lixo", false))
-        dao.add(Task("Fazer trabalho de DMO1", true))
     }
 
     private fun load() {

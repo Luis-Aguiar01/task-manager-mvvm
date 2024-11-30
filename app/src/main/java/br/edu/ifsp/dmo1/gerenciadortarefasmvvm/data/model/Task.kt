@@ -1,7 +1,6 @@
 package br.edu.ifsp.dmo1.gerenciadortarefasmvvm.data.model
 
 class Task(var description: String, var isCompleted: Boolean) {
-
     private companion object {
         var lastId: Long = 1L
     }
