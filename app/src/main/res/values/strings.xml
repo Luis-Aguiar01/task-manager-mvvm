@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Gerenciador de Tarefas MVVM</string>
+    <string name="add_new_task">Adicionar nova tarefa.</string>
+    <string name="task_description">Descrição da tarefa</string>
+    <string name="save">Salvar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="task_inserted_sucess">Tarefa inserida com sucesso.</string>
+    <string name="task_inserted_error">Erro ao inserir tarefa.</string>
 </resources>
