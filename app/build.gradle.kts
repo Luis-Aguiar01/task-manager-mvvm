@@ -5,18 +5,20 @@ plugins {
 
 android {
     namespace = "br.edu.ifsp.dmo1.gerenciadortarefasmvvm"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "br.edu.ifsp.dmo1.gerenciadortarefasmvvm"
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    viewBinding {
+        enable = true
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
