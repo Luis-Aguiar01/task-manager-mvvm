@@ -10,8 +10,9 @@ import br.edu.ifsp.dmo1.gerenciadortarefasmvvm.R
 import br.edu.ifsp.dmo1.gerenciadortarefasmvvm.databinding.ActivityMainBinding
 import br.edu.ifsp.dmo1.gerenciadortarefasmvvm.databinding.DialogNewTaskBinding
 import br.edu.ifsp.dmo1.gerenciadortarefasmvvm.ui.adapter.TaskAdapter
+import br.edu.ifsp.dmo1.gerenciadortarefasmvvm.ui.listener.TaskClickListener
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TaskClickListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: TaskAdapter
@@ -28,8 +29,12 @@ class MainActivity : AppCompatActivity() {
         configObservers()
     }
 
+    override fun clickDone(position: Int) {
+        viewModel.updateTask(position)
+    }
+
     private fun configListview() {
-        adapter = TaskAdapter(this, mutableListOf())
+        adapter = TaskAdapter(this, mutableListOf(), this)
         binding.listTasks.adapter = adapter
     }
 

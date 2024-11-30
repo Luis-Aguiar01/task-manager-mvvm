@@ -18,6 +18,10 @@ class MainViewModel : ViewModel() {
     private val _insertTask = MutableLiveData<Boolean>()
     val insertTask: LiveData<Boolean> = _insertTask
 
+    private val _updateTask = MutableLiveData<Boolean>()
+    val updateTask: LiveData<Boolean>
+        get() = _updateTask
+
     init {
         mock()
         load()
@@ -27,6 +31,13 @@ class MainViewModel : ViewModel() {
         val task = Task(description, false)
         dao.add(task)
         _insertTask.value = true
+        load()
+    }
+
+    fun updateTask(position: Int) {
+        val task = dao.getAll()[position]
+        task.isCompleted = !task.isCompleted
+        _updateTask.value = true
         load()
     }
 
