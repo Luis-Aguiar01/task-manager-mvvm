@@ -22,6 +22,15 @@ class MainViewModel : ViewModel() {
     val updateTask: LiveData<Boolean>
         get() = _updateTask
 
+    fun filterTasks(status: String) {
+        val tasks = dao.getAll()
+        _tasks.value = when (status) {
+            "Done" -> tasks.filter { it.isCompleted }
+            "To do" -> tasks.filter { !it.isCompleted }
+            else -> tasks
+        }
+    }
+
     fun insertTask(description: String) {
         val task = Task(description, false)
         dao.add(task)

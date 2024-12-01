@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="task_states">
+        <item>All</item>
+        <item>Done</item>
+        <item>To do</item>
+    </string-array>
+</resources>

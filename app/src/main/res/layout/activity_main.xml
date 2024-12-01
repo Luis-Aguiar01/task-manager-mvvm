@@ -8,12 +8,35 @@
     android:padding="12dp"
     tools:context=".ui.main.MainActivity">
 
-    <ListView
+    <TextView
+        android:id="@+id/filtro_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtro:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+        <ListView
         android:id="@+id/list_tasks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        android:layout_marginTop="32dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/filtro_text"
+        app:layout_constraintStart_toEndOf="@+id/filtro_text"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        android:padding="10dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_task"

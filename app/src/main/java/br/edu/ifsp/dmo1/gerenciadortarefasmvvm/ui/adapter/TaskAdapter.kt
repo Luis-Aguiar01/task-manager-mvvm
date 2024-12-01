@@ -48,7 +48,6 @@ class TaskAdapter(
 
     fun updateTasks(newTasks: List<Task>) {
         tasks = newTasks
-        tasks.sortedBy { it.isCompleted }
         clear()
         addAll(tasks)
         notifyDataSetChanged()

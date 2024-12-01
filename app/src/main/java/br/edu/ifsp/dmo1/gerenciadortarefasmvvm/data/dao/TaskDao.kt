@@ -9,7 +9,7 @@ object TaskDao {
         tasks.add(task)
     }
 
-    fun getAll() = tasks
+    fun getAll() = tasks.sortedBy { it.isCompleted }
 
     fun get(id: Long): Task? {
         return tasks.stream()
