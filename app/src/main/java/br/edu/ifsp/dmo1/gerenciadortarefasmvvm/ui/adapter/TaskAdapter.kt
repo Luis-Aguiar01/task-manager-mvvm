@@ -39,7 +39,7 @@ class TaskAdapter(
                 binding.imageDone.setColorFilter(ContextCompat.getColor(context, R.color.red))
             }
             binding.imageDone.setOnClickListener {
-                clickListener.clickDone(position)
+                clickListener.clickDone(task.id)
             }
         }
 

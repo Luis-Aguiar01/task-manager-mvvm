@@ -8,6 +8,7 @@ import br.edu.ifsp.dmo1.gerenciadortarefasmvvm.data.model.Task
 
 class MainViewModel : ViewModel() {
     private val dao = TaskDao
+    private var currentState = "All"
 
     private val _tasks = MutableLiveData<List<Task>>()
     val tasks: LiveData<List<Task>>
@@ -29,6 +30,7 @@ class MainViewModel : ViewModel() {
             "To do" -> tasks.filter { !it.isCompleted }
             else -> tasks
         }
+        currentState = status
     }
 
     fun insertTask(description: String) {
@@ -38,14 +40,16 @@ class MainViewModel : ViewModel() {
         load()
     }
 
-    fun updateTask(position: Int) {
-        val task = dao.getAll()[position]
-        task.isCompleted = !task.isCompleted
-        _updateTask.value = true
-        load()
+    fun updateTask(position: Long) {
+        val task = dao.get(position)
+        if (task != null) {
+            task.isCompleted = !task.isCompleted
+            _updateTask.value = true
+            load()
+        }
     }
 
     private fun load() {
-        _tasks.value = dao.getAll()
+        filterTasks(currentState)
     }
 }

@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), TaskClickListener {
         configSpinner()
     }
 
-    override fun clickDone(position: Int) {
+    override fun clickDone(position: Long) {
         viewModel.updateTask(position)
     }
 
@@ -48,6 +48,27 @@ class MainActivity : AppCompatActivity(), TaskClickListener {
     private fun configObservers() {
         viewModel.tasks.observe(this, Observer {
             adapter.updateTasks(it)
+        })
+
+        viewModel.insertTask.observe(this, Observer {
+            val str = if(it){
+                getString(R.string.task_inserted_sucess)
+            }
+            else {
+                getString(R.string.task_inserted_error)
+            }
+
+            Toast.makeText(this, str, Toast.LENGTH_LONG).show()
+        })
+
+        viewModel.updateTask.observe(this, Observer{
+            if(it){
+                Toast.makeText(
+                    this,
+                    getString(R.string.task_updated_success),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         })
     }
 
@@ -90,7 +111,6 @@ class MainActivity : AppCompatActivity(), TaskClickListener {
                 DialogInterface.OnClickListener { dialog, which ->
                     val description = bindingDialog.editDescription.text.toString()
                     viewModel.insertTask(description)
-                    binding.spinner.setSelection(0)
                     dialog.dismiss()
                 })
             .setNegativeButton(
